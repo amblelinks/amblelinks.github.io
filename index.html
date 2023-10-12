@@ -5,24 +5,7 @@
 </head>
 <body>
     <script>
-        // Get the current URL of the page
-        var currentUrl = window.location.href;
-        document.getElementById("currentUrl").textContent = currentUrl;
-
-        // Extract the page ID (path) without the domain and remove leading slash
-        var url = new URL(currentUrl);
-        var pageID = url.pathname.substring(1); // Remove the leading slash
-        document.getElementById("pageID").textContent = pageID;
-
-        // Check if the page ID is a 7-digit alphanumeric code
-        var alphanumericPattern = /^[A-Za-z0-9]{7}$/;
-        if (alphanumericPattern.test(pageID)) {
-            // Redirect to 'amble.page/[pageid]'
-            window.location.href = 'https://amble.page/' + pageID;
-        } else {
-            // Redirect to 'amble.page'
-            window.location.href = 'https://amble.page';
-        }
+    window.location.href = 'https://amble.page';
     </script>
 </body>
 </html>
