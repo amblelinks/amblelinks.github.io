@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page ID Extractor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #result {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Page ID Extractor</h1>
+    <p>Enter a web address to extract the page ID:</p>
+    <input type="text" id="webAddress" placeholder="Enter a web address">
+    <button onclick="extractPageID()">Extract Page ID</button>
+    <p id="result"></p>
+
+    <script>
+        function extractPageID() {
+            var webAddress = document.getElementById("webAddress").value;
+            
+            // Use the URL constructor to parse the input and get the hostname
+            try {
+                var url = new URL(webAddress);
+                var pageID = url.pathname;
+                document.getElementById("result").textContent = "Page ID: " + pageID;
+            } catch (error) {
+                document.getElementById("result").textContent = "Invalid URL";
+            }
+        }
+    </script>
+</body>
+</html>
