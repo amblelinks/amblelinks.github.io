@@ -7,7 +7,7 @@
     <h1>Current Page URL</h1>
     <p>This page is running at:</p>
     <p id="currentUrl"></p>
-    <p>Page ID (without domain):</p>
+    <p>Page ID (without domain and leading slash):</p>
     <p id="pageID"></p>
 
     <script>
@@ -15,9 +15,9 @@
         var currentUrl = window.location.href;
         document.getElementById("currentUrl").textContent = currentUrl;
 
-        // Extract the page ID (path) without the domain
+        // Extract the page ID (path) without the domain and remove leading slash
         var url = new URL(currentUrl);
-        var pageID = url.pathname;
+        var pageID = url.pathname.substring(1); // Remove the leading slash
         document.getElementById("pageID").textContent = pageID;
     </script>
 </body>
