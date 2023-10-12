@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Page ID Extractor</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        #result {
-            font-weight: bold;
-        }
-    </style>
+    <title>Amble</title>
 </head>
 <body>
-    <h1>Web Page ID Extractor</h1>
-    <p>Enter a web address to extract the page ID:</p>
-    <input type="text" id="webAddress" placeholder="Enter a web address">
-    <button onclick="extractPageID()">Extract Page ID</button>
-    <p id="result"></p>
-
     <script>
-        function extractPageID() {
-            var webAddress = document.getElementById("webAddress").value;
-            
-            // Use the URL constructor to parse the input and get the hostname
-            try {
-                var url = new URL(webAddress);
-                var pageID = url.pathname;
-                document.getElementById("result").textContent = "Page ID: " + pageID;
-            } catch (error) {
-                document.getElementById("result").textContent = "Invalid URL";
-            }
+        // Get the current URL of the page
+        var currentUrl = window.location.href;
+        document.getElementById("currentUrl").textContent = currentUrl;
+
+        // Extract the page ID (path) without the domain and remove leading slash
+        var url = new URL(currentUrl);
+        var pageID = url.pathname.substring(1); // Remove the leading slash
+        document.getElementById("pageID").textContent = pageID;
+
+        // Check if the page ID is a 7-digit alphanumeric code
+        var alphanumericPattern = /^[A-Za-z0-9]{7}$/;
+        if (alphanumericPattern.test(pageID)) {
+            // Redirect to 'amble.page/[pageid]'
+            window.location.href = 'https://amble.page/' + pageID;
+        } else {
+            // Redirect to 'amble.page'
+            window.location.href = 'https://amble.page';
         }
     </script>
 </body>
