@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Current Page URL</title>
+    <title>Page ID Checker and Redirect</title>
 </head>
 <body>
-    <h1>Current Page URL</h1>
+    <h1>Page ID Checker and Redirect</h1>
     <p>This page is running at:</p>
     <p id="currentUrl"></p>
     <p>Page ID (without domain and leading slash):</p>
@@ -19,6 +19,16 @@
         var url = new URL(currentUrl);
         var pageID = url.pathname.substring(1); // Remove the leading slash
         document.getElementById("pageID").textContent = pageID;
+
+        // Check if the page ID is a 7-digit alphanumeric code
+        var alphanumericPattern = /^[A-Za-z0-9]{7}$/;
+        if (alphanumericPattern.test(pageID)) {
+            // Redirect to 'amble.page/[pageid]'
+            window.location.href = 'https://amble.page/' + pageID;
+        } else {
+            // Redirect to 'amble.page'
+            window.location.href = 'https://amble.page';
+        }
     </script>
 </body>
 </html>
